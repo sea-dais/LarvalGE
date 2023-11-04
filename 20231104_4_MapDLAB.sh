@@ -15,7 +15,7 @@ grep "overall alignment rate" maps.e1295178 > DLAB_alignment_rates.txt
 
 nano multiqc
 #Paste following
-multiqc .
+multiqc ./*sam
 
 ls6_launcher_creator.py -j multiqc -n multiqc -t 02:00:00 -a IBN21018 -e dmflores@utexas.edu
 nano multiqc.slurm
