@@ -35,3 +35,8 @@ for file in files:
 
 print("Copy operation completed.")
 
+#### Alternatively write python script that accepts inputs as variables 
+#Create prefix list for CNAT 
+ nano CNAT_prefixlist.txt
+
+python splitbyspecies.py CNAT_prefixlist.txt /scratch/08717/dmflores/LarvalGE/TrimmedFQ /scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT
