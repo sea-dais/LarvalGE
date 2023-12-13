@@ -15,7 +15,7 @@ conda activate cutadaptenv
 >clean
 for F in *.fastq; do
 base_name=$(basename $F .fastq);
-echo "tagseq_clipper.pl $F | cutadapt - -a AAAAAAAA -a AGATCGG -q 15 -m 25 -o ${base_name}.trim" >>clean;
+echo "tagseq_clipper.pl $F | cutadapt - -a AAAAAAAA -a AGATCGG -q 15 -m 25 -o ${base_name}.trim.fastq" >>clean;
 done
 
 # now execute all commands written to file 'clean', preferably in parallel (see Note in the beginning of this walkthrough)
@@ -28,7 +28,7 @@ cd ..
 mkdir TrimmedFQ
 
 cd Fastq
-mv *trim ../TrimmedFQ
+mv *trim.fastq ../TrimmedFQ
 
 cd ../TrimmedFQ
 
@@ -40,7 +40,7 @@ cd /scratch/08717/dmflores/LarvalGE/TrimmedFQ
 conda activate qc
 
 >fastqc
-for file in *.trim; do
+for file in *.trim*; do
 base_name=$(basename $file .trim);
 echo "fastqc ${file} –o ${base_name}.qc.html" >>fastqc;
 done
