@@ -43,18 +43,18 @@ cd /scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB2/quants
 idev 2:00:00
 conda activate OneMap
 R
-BiocManager::install("tximport")
+library(tximport)
 
 dir<- "/scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB2"
 setwd(dir)
-#Need CNAT_quantlist.txt
+#Need DLAB_quantlist.txt
 samples <- read.table(file.path(dir, "DLAB_quantlist.txt"), header = FALSE)
 
 files <- file.path(dir, "quants", samples$V1, "quant.sf")
 names(files) <- paste0(samples$V1)
 all(file.exists(files))
 
-ref<-"/scratch/08717/dmflores/KBeavers/SCTLD-Transmission-Experiment-USVI/Transcriptomes/"
+ref <- "/scratch/08717/dmflores/KBeavers/SCTLD-Transmission-Experiment-USVI/Transcriptomes/"
 tx2gene <- read.table(file.path(ref, "pstr_tx2gene.tab"), header = FALSE)
 
 library(tximport)
