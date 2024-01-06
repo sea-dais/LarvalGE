@@ -1,0 +1,68 @@
+---
+title: "CNAT GO Enrichment Analysis"
+author: "Daisy Flores"
+date: "2024-01-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("/Users/daisyflores/Desktop/CNAT")
+```
+
+```{r}
+library(UniprotR)
+```
+```{r}
+IDList<- read.table("ID_list.txt")
+```
+
+```{r}
+IDList2<- unique(IDList$V1)
+length(IDList2)
+```
+
+```{r}
+# Define the chunk size
+chunk_size <- 20  # You can adjust this based on your needs
+
+# Calculate the number of chunks
+num_chunks <- ceiling(length(IDList2) / chunk_size)
+
+# Initialize an empty list to store the results
+result_list <- list()
+
+# Loop through each chunk
+for (i in 1:num_chunks) {
+  # Calculate start and end indices for the current chunk
+  start_index <- (i - 1) * chunk_size + 1
+  end_index <- min(i * chunk_size, length(IDList2))
+  
+  # Extract the current chunk
+  current_chunk <- IDList2[start_index:end_index]
+  
+  # Call the function for the current chunk
+  current_result <- GetProteinGOInfo(current_chunk)
+  
+  # Store the result in the list
+  result_list[[i]] <- current_result
+}
+
+# Combine the results from all chunks
+final_result <- do.call(rbind, result_list)
+```
+
+```{r}
+dflist <- rownames(final_result)
+
+# Keep only the rows where the middle portion is in df_list
+filtered_IDList <- IDList[!(IDList$V1 %in% dflist), ]
+```
+
+```{r}
+extra<- GetProteinGOInfo(filtered_IDList)
+```
+
+```{r}
+final<- rbind(final_result, extra)
+```
