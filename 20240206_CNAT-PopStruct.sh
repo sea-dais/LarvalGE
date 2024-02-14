@@ -86,7 +86,7 @@ nano bams
 
 ###-------------------
 PercInd=0.75
-NIND=`cat bams | wc -l`
+NIND=`cat bams2 | wc -l`
 MI=`echo "($NIND*$PercInd+0.5)/1" | bc`
 
 # THINGS FOR ANGSD TO DO : 
@@ -112,7 +112,51 @@ myresult.covMat
 myresult.ibs.gz 
 myresult.ibsMat  
 
-scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/myresult.ibsMat ./myresult2.ibsMat
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/myresult.ibsMat ./myresult22.ibsMat
 
 scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/bams2 .
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT_prefixlist.txt ./prefixlist.txt
+
+#### 20240214_Remove outlier fastafiles AGAIN
+#Remove 
+#N4.1: CN12-S34
+#Q4.3: CN12-S35
+#A4.3: CN12-S35
+#W2.3: CN9-S25
+nano bams 
+#Delete the bams from this list and write as new file called 
+#bams3
+##Has 41 entries
+
+###-------------------
+PercInd=0.75
+NIND=`cat bams3 | wc -l`
+MI=`echo "($NIND*$PercInd+0.5)/1" | bc`
+
+# THINGS FOR ANGSD TO DO : 
+# -GL 1 : samtools likelihood model
+# -doGlf 2 : output genotype likelihoods in beagle format (for admixture)
+# -doPost 1 : output posterior allele frequencies based on HWE prior
+# -doMajorMinor 1 : infer major and minor alleles from data (not from reference)
+# -makeMatrix 1 -doIBS 1 : identity-by-state and covariance matrices based on single-read resampling (robust to variation in coverage across samples)
+FILTERS="-uniqueOnly 1 -remove_bads 1 -minMapQ 20 -minQ 25 -dosnpstat 1 -doHWE 1 -sb_pval 1e-5 -hetbias_pval 1e-5 -skipTriallelic 1 -minInd $MI -snp_pval 1e-5 -minMaf 0.05"
+TODO="-doMajorMinor 1 -doMaf 1 -doCounts 1 -makeMatrix 1 -doIBS 1 -doCov 1 -doGeno 8 -dobcf 1 -doPost 1 -doGlf 2"
+
+# Starting angsd with -P the number of parallel processes. Funny but in many cases angsd runs faster on -P 1
+angsd -b bams3 -GL 1 $FILTERS $TODO -P 1 -out myresult3
+
+# how many SNPs?
+NSITES=`zcat myresult3.beagle.gz | wc -l`
+echo $NSITES
+
+# use myresult.covMat and myresult.ibsMat from angsd run for PCoA and PCA 
+
+# scp *Mat, *covar, *qopt and bams files to laptop, use angsd_ibs_pca.R to plot PCA and admixturePlotting_v4.R to plot ADMIXTURE
+myresult.covMat
+myresult.ibs.gz 
+myresult.ibsMat  
+
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/myresult3.ibsMat ./myresult3.ibsMat
+
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/bams3 .
 scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT_prefixlist.txt ./prefixlist.txt
