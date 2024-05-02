@@ -4,19 +4,23 @@ cd /scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT
 ls -l *fastq | wc
 
 ls *bam > bams
-#Remove
-#H4.1
-#H4.2
-#K2.1
-#N4.5
-#W2.1
-#W2.3
-#W2.4
-#N4.2
-#N4.3
 
+nano bams 
+#Remove
+#A4.5 A4.6
+#G2.2 G2.3
+#G4.2 G4.3 G4.4 G4.5 
+#H4.1 H4.2 H4.3 H4.4 
+#K2.1 K2.4 
+#N4.2 N4.3 N4.5
+#Q4.4, Q4.5
+#T4.2 T4.4 T4.6 
+#W2.1 W2.3 W2.4
+
+#G4.5','H4.3'
 ###-------------------
 PercInd=0.75
+
 NIND=`cat bams | wc -l`
 MI=`echo "($NIND*$PercInd+0.5)/1" | bc`
 
@@ -39,8 +43,11 @@ echo $NSITES
 # use myresult.covMat and myresult.ibsMat from angsd run for PCoA and PCA 
 
 # scp *Mat, *covar, *qopt and bams files to laptop, use angsd_ibs_pca.R to plot PCA and admixturePlotting_v4.R to plot ADMIXTURE
-myresult.covMat
-myresult.ibs.gz 
-myresult.ibsMat  
+
+#myresult.covMat
+#myresult.ibs.gz 
+#myresult.ibsMat  
 
 scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/myresult.ibsMat .
+
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/CNAT/bams .
