@@ -23,7 +23,7 @@ expression_compiler.pl *.sam.counts > allcounts.txt
 
 
 #On Local Computer
-cd /Users/daisyflores/Desktop/DLAB
+cd /Users/daisyflores/Desktop/Projects/LarvalGE/DLAB
 scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB/\*txt .
 
 
