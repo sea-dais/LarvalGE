@@ -45,15 +45,12 @@ ls *bam > bams
 
 nano bams 
 #Remove
-#A2.3 A2.4
-#B4.1 B4.3 B4.4
-#H2.2 H4.3 H2.3 H2.7
-#K4.3 K4.4 K4.5
-#N2.2
-#P4.1 P4.2 P4.3 P4.4
-#R4.1 R4.2 R4.3
+#Remove
+#B4.1 B4.4
+#R4.1 R4.3
+#H2.2
 #T2.1 T2.2 T2.3 T2.4 T2.5 T2.6 T2.7 T2.8
-#W4.2 W4.4
+
 
 ###-------------------
 PercInd=0.75
@@ -86,6 +83,6 @@ echo $NSITES
 #myresult.ibs.gz 
 #myresult.ibsMat  
 
-scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB2/myresult.ibsMat .
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB2/myresult.ibsMat ./myresult_38Samples.ibsMat
 
-scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB2/bams .
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB2/bams ./bams_38Samples
