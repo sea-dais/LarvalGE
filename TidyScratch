@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Find empty directories and save their paths to a file
+find . -type d -empty > empty_dirs.txt
+
+# Check if any empty directories were found
+if [ ! -s empty_dirs.txt ]; then
+    echo "No empty directories found."
+    rm empty_dirs.txt
+    exit 0
+fi
+
+# Display found empty directories
+echo "The following empty directories were found:"
+cat empty_dirs.txt
+
+# Prompt for confirmation
+read -p "Do you want to delete these directories? (y/n): " confirm
+
+if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
+    # Read each line from the file and delete the directory
+    while IFS= read -r dir; do
+        if [ -d "$dir" ]; then
+            if rmdir "$dir"; then
+                echo "Deleted: $dir"
+            else
+                echo "Failed to delete: $dir"
+            fi
+        else
+            echo "Directory no longer exists: $dir"
+        fi
+    done < empty_dirs.txt
+    echo "Deletion complete."
+else
+    echo "Operation cancelled."
+fi
+
+# Clean up the temporary file
+rm empty_dirs.txt
