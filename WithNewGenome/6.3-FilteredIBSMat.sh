@@ -4,6 +4,14 @@ ls $SCRATCH/LarvalGE/CNAT_STAR_Output/*.bam | wc -l
 # Create a list of BAM files
 ls $SCRATCH/LarvalGE/CNAT_STAR_Output/*.bam > bams
 
+# remove from bams file
+K2.1	#CN3-S7	
+N4.5    #CN5-S14	
+W2.1    #CN7-S19	
+W2.3    #CN9-S25	
+W2.4    #CN11-S31	
+N4.2    #CN17-S51	
+N4.3    #CN18-S54	
 ###-------------------
 PercInd=0.75
 NIND=`cat bams | wc -l`
@@ -20,7 +28,7 @@ TODO="-doMajorMinor 1 -doMaf 1 -doCounts 1 -makeMatrix 1 -doIBS 1 -doCov 1 -doGe
 
 conda activate ANGSD
 # Starting angsd with -P the number of parallel processes. Funny but in many cases angsd runs faster on -P 1
-echo "angsd -b bams -GL 1 $FILTERS $TODO -P 50 -out myresult" > runangsd
+echo "angsd -b bams -GL 1 $FILTERS $TODO -P 1 -out myresult" > runangsd
 
 ls6_launcher_creator.py -j runangsd -n runangsd -t 02:00:00 -a IBN21018 -e dmflores@utexas.edu
 nano runangsd.slurm
@@ -36,5 +44,5 @@ myresult.covMat
 myresult.ibs.gz 
 myresult.ibsMat  
 
-scp $LS6:$SCRATCH/LarvalGE/myresult.ibsMat ./cnat_ibsMat
-scp $LS6:$SCRATCH/LarvalGE/bams ./cnat_bams
+scp $LS6:$SCRATCH/LarvalGE/myresult.ibsMat ./cnat_ibsMat-filt
+scp $LS6:$SCRATCH/LarvalGE/bams ./cnat_bams-filt

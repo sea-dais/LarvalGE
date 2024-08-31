@@ -5,7 +5,7 @@ chmod +x ExtractCounts.sh
 
 export OUT_DIR="$SCRATCH/LarvalGE/CNAT_STAR_Output/"
 
-./ExtractCounts.sh $OUT_DIR
+ExtractCounts.sh $OUT_DIR
 
 
 ## On local Computer
