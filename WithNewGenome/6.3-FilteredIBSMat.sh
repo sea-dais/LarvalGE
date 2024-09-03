@@ -46,3 +46,5 @@ myresult.ibsMat
 
 scp $LS6:$SCRATCH/LarvalGE/myresult.ibsMat ./cnat_ibsMat-filt
 scp $LS6:$SCRATCH/LarvalGE/bams ./cnat_bams-filt
+
+
