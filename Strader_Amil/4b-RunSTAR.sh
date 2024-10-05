@@ -1,5 +1,8 @@
 ### STAR INDEX the Reference Genome
 idev
+conda activate cufflinks
+gffread -T Amil.coding.gff3 -o amil.gtf
+
 conda activate STAR
 STAR --runThreadN 8 \
      --runMode genomeGenerate \
@@ -10,9 +13,9 @@ STAR --runThreadN 8 \
 
 ## Edit StarAlignment.sh 
 conda activate STAR
-sbatch CNAT_STAR-Alignment.sh
+sbatch Amil_STAR-Alignment.sh
 
-cd $SCRATCH/LarvalGE/CNAT_STAR_Output
+cd $SCRATCH/Amillepora/Amil_STAR_Output
 echo "conda run -n qc multiqc *Log.final.out" > STARmultiqc
 
 ls6_launcher_creator.py -q vm-small -j STARmultiqc -n STARmultiqc -t 2:00:00 -a IBN21018 -e dmflores@utexas.edu
@@ -20,5 +23,5 @@ ls6_launcher_creator.py -q vm-small -j STARmultiqc -n STARmultiqc -t 2:00:00 -a 
 conda activate qc 
 sbatch STARmultiqc.slurm
 
-scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/2CHInS/STAR_Output/multiqc_report.html .
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/Amillepora/Amil_STAR_Output/multiqc_report.html .
 

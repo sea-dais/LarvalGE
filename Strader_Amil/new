@@ -1,0 +1,1 @@
+bowtie2 --no-unal --score-min L,16,1 --local -L 16 -x /work/08717/dmflores/ls6/db/amilV2_chroms.fasta -U S$
