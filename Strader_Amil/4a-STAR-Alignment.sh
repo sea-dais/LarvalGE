@@ -11,8 +11,8 @@
 
 # Define variables
 GENOME_DIR="$WORK/db/amil/star_index"
-FASTQ_DIR="$SCRATCH/Amillepora/TrimmedFQ"
-OUTPUT_DIR="$SCRATCH/Amillepora/Amil_STAR_Output"
+FASTQ_DIR="$SCRATCH/LarvalGE/AMIL/TrimmedFQ"
+OUTPUT_DIR="$SCRATCH/LarvalGE/AMIL/STAR_Output"
 
 # Create output directory if it doesn't exist
 mkdir -p $OUTPUT_DIR

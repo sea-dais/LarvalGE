@@ -13,9 +13,9 @@ STAR --runThreadN 8 \
 
 ## Edit StarAlignment.sh 
 conda activate STAR
-sbatch Amil_STAR-Alignment.sh
+sbatch Amil-STARalignment.sh
 
-cd $SCRATCH/Amillepora/Amil_STAR_Output
+cd $SCRATCH/LarvalGE/AMIL/STAR_Output
 echo "conda run -n qc multiqc *Log.final.out" > STARmultiqc
 
 ls6_launcher_creator.py -q vm-small -j STARmultiqc -n STARmultiqc -t 2:00:00 -a IBN21018 -e dmflores@utexas.edu
@@ -23,5 +23,5 @@ ls6_launcher_creator.py -q vm-small -j STARmultiqc -n STARmultiqc -t 2:00:00 -a 
 conda activate qc 
 sbatch STARmultiqc.slurm
 
-scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/Amillepora/Amil_STAR_Output/multiqc_report.html .
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/AMIL/STAR_Output/multiqc_report.html ./multiqcReport2.html
 

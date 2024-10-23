@@ -5,7 +5,7 @@ git clone https://github.com/z0on/tag-based_RNAseq.git
 /home1/08717/dmflores/bin/tag-based_RNAseq
 
 ##START
-cd /scratch/08717/dmflores/Amillepora/fastqfiles
+cd /scratch/08717/dmflores/LarvalGE/AMIL/Amil_FastqFiles
 
 
 ##-------------TRIM
@@ -21,7 +21,6 @@ done
 
 # now execute all commands written to file 'clean', preferably in parallel (see Note in the beginning of this walkthrough)
 ls6_launcher_creator.py -j clean -n clean -t 02:00:00 -a IBN21018 -e dmflores@utexas.edu
-nano clean.slurm
 sbatch clean.slurm
 
 #move files to TrimmedFQ
@@ -31,10 +30,10 @@ mv *trim.fastq ./TrimmedFQ
 cd ./TrimmedFQ
 
 ##-------------FASTQC
-cd /scratch/08717/dmflores/Amillepora
+cd /scratch/08717/dmflores/LarvalGE/AMIL/
 mkdir QChtml
 
-cd /scratch/08717/dmflores/Amillepora/TrimmedFQ
+cd /scratch/08717/dmflores/LarvalGE/AMIL/TrimmedFQ
 conda activate qc
 
 >fastqc

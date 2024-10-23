@@ -3,7 +3,7 @@
 
 chmod +x ExtractCounts.sh
 
-export OUT_DIR="$SCRATCH/Amillepora/Amil_STAR_Output"
+export OUT_DIR="$SCRATCH/LarvalGE/AMIL/STAR_Output"
 
 ExtractCounts.sh $OUT_DIR
 
@@ -16,4 +16,4 @@ SCRATCH="/scratch/08717/dmflores"
 HOME="/home1/08717/dmflores"
 WORK="/work/08717/dmflores/ls6"
 
-scp $LS6:$SCRATCH/LarvalGE/CNAT_counts.txt .
+scp $LS6:$SCRATCH/LarvalGE/AMIL/STAR_Output/counts.txt ./Amil_counts.txt
