@@ -1,20 +1,14 @@
-### STAR INDEX the Reference Genome
-idev
-conda activate cufflinks
-gffread -T Amil.coding.gff3 -o amil.gtf
+###---STAR INDEX the Reference Genome
+#Follow Prep AmilGenome.sh
+#Change sjdbOverhang to the minimum read size -1 (in this case = 24)
+#Will need to re-index genome if transcripts are different size 
 
-conda activate STAR
-STAR --runThreadN 8 \
-     --runMode genomeGenerate \
-     --genomeDir $WORK/db/amil/star_index \
-     --genomeFastaFiles $WORK/db/amilV2_chroms.fasta  \
-     --sjdbGTFfile $WORK/db/amil.gtf \
-     --sjdbOverhang 100
-
-## Edit StarAlignment.sh 
+##---Edit StarAlignment.sh 
+#Make sure directory alias point to correct path where files are stored/will be stored
 conda activate STAR
 sbatch Amil-STARalignment.sh
 
+##---Multiqc mapped reads
 cd $SCRATCH/LarvalGE/AMIL/STAR_Output
 echo "conda run -n qc multiqc *Log.final.out" > STARmultiqc
 
@@ -23,5 +17,6 @@ ls6_launcher_creator.py -q vm-small -j STARmultiqc -n STARmultiqc -t 2:00:00 -a 
 conda activate qc 
 sbatch STARmultiqc.slurm
 
-scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/AMIL/STAR_Output/multiqc_report.html ./multiqcReport2.html
+## Copy html to local cpu to view
+scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/AMIL/STAR_Output/multiqc_report.html ./multiqcReport4.html
 

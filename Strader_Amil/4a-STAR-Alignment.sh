@@ -10,9 +10,9 @@
 #SBATCH -p development
 
 # Define variables
-GENOME_DIR="$WORK/db/amil/star_index"
-FASTQ_DIR="$SCRATCH/LarvalGE/AMIL/TrimmedFQ"
-OUTPUT_DIR="$SCRATCH/LarvalGE/AMIL/STAR_Output"
+GENOME_DIR="$WORK/AmilGenome" # where STAR Indexed Genome is stored
+FASTQ_DIR="$SCRATCH/LarvalGE/AMIL/TrimmedFQ" #Where Trimmed fastq files are 
+OUTPUT_DIR="$SCRATCH/LarvalGE/AMIL/STAR_Output" #Where to save output files
 
 # Create output directory if it doesn't exist
 mkdir -p $OUTPUT_DIR
@@ -29,7 +29,7 @@ do
     
     STAR --runThreadN $SLURM_CPUS_PER_TASK \
          --genomeDir $GENOME_DIR \
-         --sjdbGTFfile $GENOME_DIR/amil.gtf \
+         --sjdbGTFfile $GENOME_DIR/Amil.gtf \
          --readFilesIn $f \
          --outSAMtype BAM SortedByCoordinate \
          --quantMode GeneCounts \

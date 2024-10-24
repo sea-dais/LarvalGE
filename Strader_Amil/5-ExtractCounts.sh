@@ -1,19 +1,19 @@
 ## Use ExtractCounts.sh
 ## Make Executable 
 
-chmod +x ExtractCounts.sh
+chmod +x ExtractCounts_nu.sh
 
 export OUT_DIR="$SCRATCH/LarvalGE/AMIL/STAR_Output"
 
-ExtractCounts.sh $OUT_DIR
+ExtractCounts_nu.sh $OUT_DIR
 
 
 ## On local Computer
-cd /Users/daisyflores/Desktop/Projects/LarvalGE/CNAT/WithNewGenome
+cd /Users/daisyflores/Desktop/Projects/LarvalGE/AMIL/data/
 
 LS6="dmflores@ls6.tacc.utexas.edu"
 SCRATCH="/scratch/08717/dmflores"
 HOME="/home1/08717/dmflores"
 WORK="/work/08717/dmflores/ls6"
 
-scp $LS6:$SCRATCH/LarvalGE/AMIL/STAR_Output/counts.txt ./Amil_counts.txt
+scp $LS6:$SCRATCH/LarvalGE/AMIL/counts.txt ./Amil_counts.txt
