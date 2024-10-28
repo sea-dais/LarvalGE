@@ -6,7 +6,7 @@ chmod +x ExtractCounts_nu.sh
 export OUT_DIR="$SCRATCH/LarvalGE/AMIL/STAR_Output"
 
 ExtractCounts_nu.sh $OUT_DIR
-
+#output is always counts.txt with this shell script
 
 ## On local Computer
 cd /Users/daisyflores/Desktop/Projects/LarvalGE/AMIL/data/
