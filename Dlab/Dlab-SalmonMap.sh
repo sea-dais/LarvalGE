@@ -8,8 +8,7 @@ cd /scratch/08717/dmflores/KBeavers/SCTLD-Transmission-Experiment-USVI/Transcrip
 awk -F'\t' -v OFS='\t' '{print $2, $1}' annotated_pstr_reference.txt > pstr_tx2gene.tab
 
 # From Prep-PstrGenome.sh
-export REF_Index=$SCRATCH/KBeavers/SCTLD-Transmission-Experiment-USVI/Transcriptomes/Pstr_index
-
+export REF_Index=$SCRATCH/KBeavers/data/Pstr/Pstr_index
 ##--- Map with Salmon
 cd /scratch/08717/dmflores/LarvalGE/TrimmedFQ/DLAB
 

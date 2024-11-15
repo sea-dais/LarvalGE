@@ -48,3 +48,10 @@ nano fastqc.slurm
 sbatch fastqc.slurm
 
 mv *fastqc* ../QChtml/
+
+## Save html files of sequence data after trimming
+
+LS6="dmflores@ls6.tacc.utexas.edu"
+SCRATCH="/scratch/08717/dmflores"
+
+scp $LS6:$SCRATCH/LarvalGE/AMIL/QChtml/\*html .
