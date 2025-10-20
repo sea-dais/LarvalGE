@@ -1,7 +1,6 @@
 #Working Directory 
 /scratch/08717/dmflores/LarvalGE
 
-
 # Quality Check with FastQC 
 mkdir FastQC
 
