@@ -1,6 +1,7 @@
-conda create -n
+conda create -n ncbi_datasets
 
 conda activate ncbi_datasets
+conda install -c conda-forge ncbi-datasets-cli
 
 datasets download genome accession GCA_043250805.1 --include gff3,rna,cds,protein,genome,seq-report 
 

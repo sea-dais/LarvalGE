@@ -2,15 +2,15 @@ import os
 import shutil
 
 # Specify the variable for the prefix list filename.
-prefix_list_filename = 'prefix_list.txt'
+prefix_list_filename = 'CNAT_prefixlist.txt'
 
 # Read the list of prefixes from the specified file.
 with open(prefix_list_filename, 'r') as prefix_file:
     prefixes = [line.strip() for line in prefix_file]
 
 # Specify the input directory and output directory as variables.
-input_directory = '/path/to/your/fastq/files'
-output_directory = '/path/to/your/output/directory'
+input_directory = '/scratch/08717/dmflores/LarvalGE/TrimmedFQ'
+output_directory = '/scratch/08717/dmflores/LarvalGE/CNAT'
 
 # Create the output directory if it doesn't exist.
 os.makedirs(output_directory, exist_ok=True)

@@ -3,10 +3,9 @@ idev
 conda activate STAR
 STAR --runThreadN 8 \
      --runMode genomeGenerate \
-     --genomeDir $WORK/db/amil/star_index \
-     --genomeFastaFiles $WORK/db/amilV2_chroms.fasta  \
-     --sjdbGTFfile $WORK/db/amil.gtf \
-     --sjdbOverhang 100
+     --genomeDir $SCRATCH/cnat_genome \
+     --genomeFastaFiles $SCRATCH/cnat_genome/cnat_PSU.fna  \
+
 
 ## Edit StarAlignment.sh 
 conda activate STAR

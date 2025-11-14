@@ -10,7 +10,7 @@
 #SBATCH -p development
 
 # Define variables
-GENOME_DIR="$SCRATCH/cnat_dcyl_ssid_genomes/CNAT_STAR"
+GENOME_DIR="$SCRATCH/cnat_genome"
 FASTQ_DIR="$SCRATCH/LarvalGE/CNAT"
 OUTPUT_DIR="$SCRATCH/LarvalGE/CNAT_STAR_Output"
 
@@ -27,12 +27,10 @@ do
     base=${filename%%_*}
     echo "Base name: $base"
     
-    STAR --runThreadN $SLURM_CPUS_PER_TASK \
+    STAR --runThreadN 8 \
          --genomeDir $GENOME_DIR \
-         --sjdbGTFfile $GENOME_DIR/cnat.gtf \
          --readFilesIn $f \
          --outSAMtype BAM SortedByCoordinate \
-         --quantMode GeneCounts \
          --outFileNamePrefix ${OUTPUT_DIR}/${base}_ \
          --outSAMattributes NH HI AS nM NM MD
 
