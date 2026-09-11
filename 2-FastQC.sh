@@ -15,3 +15,10 @@ nano fastqc.slurm
 
 sbatch fastqc.slurm
 squeue -u dmflores
+
+
+###### on idev 
+mkdir -p FastQC
+for file in FastqFiles/*fastq.gz; do
+  fastqc "$file" -o FastQC/
+done

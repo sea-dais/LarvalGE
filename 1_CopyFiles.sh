@@ -10,8 +10,9 @@ bs auth
 bs list projects
 
 #Download Files: Enter IDEV or send as a job !!
+idev -t 06:00:00 -p vm-small
 ## change project name to yours
-PROJECT = XX00000
+PROJECT=JA23331
 bs -v download project --name $PROJECT --extension=fastq.gz
 
 # Once everything is downloaded run the following command to move all the fastq files into one directory. 
