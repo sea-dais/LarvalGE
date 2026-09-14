@@ -74,6 +74,10 @@ STAR --runMode genomeGenerate \
   --sjdbOverhang 100 \
   --genomeSAindexNbases 13 \
   --runThreadN 8 
+
+# alignment qc 
+multiqc ./aligned -n star_qc_report -o ./qc
+
 ########### for ls6 - old 
 ## Edit StarAlignment.sh 
 conda activate STAR
@@ -88,4 +92,5 @@ conda activate qc
 sbatch STARmultiqc.slurm
 
 scp dmflores@ls6.tacc.utexas.edu:/scratch/08717/dmflores/2CHInS/STAR_Output/multiqc_report.html .
+
 

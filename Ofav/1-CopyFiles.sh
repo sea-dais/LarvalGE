@@ -28,3 +28,7 @@ while read -r prefix; do
   [ -z "$prefix" ] && continue          # skip blank lines
   cp TrimmedFQ/"${prefix}"_*.trim.fastq OFAV/ 2>/dev/null
 done < OFAV_prefixlist.txt
+
+rsync -av dmflores@ls6.tacc.utexas.edu:$SCRATCH/LarvalGE/OFAV $SCRATCH/LarvalGE/OFAV
+
+

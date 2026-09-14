@@ -3,3 +3,5 @@ while read -r prefix; do
   [ -z "$prefix" ] && continue          # skip blank lines
   cp TrimmedFQ/"${prefix}"_*.trim.fastq DLAB/ 2>/dev/null
 done < DLAB_prefixlist.txt
+
+rsync -av dmflores@ls6.tacc.utexas.edu:$SCRATCH/LarvalGE/DLAB $SCRATCH/LarvalGE
