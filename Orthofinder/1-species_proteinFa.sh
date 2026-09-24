@@ -1,5 +1,5 @@
 # Create a new environment with Python 3.8
-conda create -n orthofinder_env python=3.8
+conda create -n orthofinder_env python=3.9
 conda activate orthofinder_env
 
 # Install orthofinder and dependencies
@@ -107,3 +107,14 @@ cd $WORK/orthofinder/proteins/
 
 grep -c ">" *.fa
 grep -h ">" *.fa | cut -d' ' -f1 | sort | uniq -d | head    # should print nothing
+
+# remove empty sequences. 
+
+for f in *.fa *.faa *.fasta; do
+  [ -e "$f" ] || continue
+  n=$(awk '/^>/{if(h && !s) c++; h=1; s=0; next} NF{s=1} END{if(h && !s) c++; print c+0}' "$f")
+  echo "$f: $n empty sequences"
+done
+
+cp Amil.fa Amil.fa.bak
+awk 'BEGIN{RS=">"; ORS=""} NR>1 {n=split($0,a,"\n"); seq=""; for(i=2;i<=n;i++) seq=seq a[i]; gsub(/[ \t\r]/,"",seq); if(length(seq)>0) print ">"$0}' Amil.fa.bak | grep -v '^$' > Amil.fa

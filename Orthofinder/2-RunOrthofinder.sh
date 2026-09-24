@@ -15,11 +15,16 @@ mkdir -p logs
 
 # STEP 1: commands file (single line; OrthoFinder is one big multithreaded job)
 dir=$WORK/orthofinder/proteins
-echo "orthofinder -f $dir -t 112 -a 28 -o $WORK/orthofinder/out_8sp" > OF8sp.cmds
+echo "orthofinder -f $dir -t 112 -a 28 -o $SCRATCH/orthofinder/out_8sp" > OF8sp.cmds
 wc -l OF8sp.cmds   # should be 1
 
 # STEP 2: Slurm script. -c 112 gives this one task the whole spr node
-mkjob.sh -n OF8sp -j OF8sp.cmds -c 112 -t 24:00:00 -e orthofinder_env
+mkjob.sh -n OF8sp -j OF8sp.cmds -c 112 -t 18:00:00 -e orthofinder_env
 
 # STEP 3: submit
 sbatch OF8sp.slurm
+
+ls -lh Orthogroups/Orthogroups.tsv
+ls -lh Species_Tree/SpeciesTree_rooted.txt
+ls -lh Comparative_Genomics_Statistics/Statistics_Overall.tsv
+ls -lh Orthologues/
