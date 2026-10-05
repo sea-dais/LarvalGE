@@ -15,3 +15,6 @@ ls6_launcher_creator.py -j fastqc_job -n fastqc_job -t 02:00:00 -a IBN21018 -e d
 
 sbatch fastqc_job.slurm
 squeue -u dmflores
+
+
+
