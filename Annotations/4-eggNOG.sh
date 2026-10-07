@@ -21,9 +21,15 @@ mkdir -p logs out
 > emapper.cmds
 for sp in ofav amil cnat dlab; do
   mkdir -p tmp_${sp}
-  echo "emapper.py --override --itype proteins -i $SCRATCH/proteomes/${sp}_clean.faa -o ${sp} --output_dir $SCRATCH/eggnog/out --data_dir $SCRATCH/eggnog_db --temp_dir $SCRATCH/eggnog/tmp_${sp} --cpu 12" >> emapper.cmds
+  echo "emapper.py --override --itype proteins -i $SCRATCH/proteomes/${sp}_clean.faa -o ${sp} --output_dir $SCRATCH/eggnog/out --data_dir $SCRATCH/eggnog_db --temp_dir $SCRATCH/eggnog/tmp_${sp} --cpu 28" >> emapper.cmds
 done
 wc -l emapper.cmds         # should be 4
 
 mkjob.sh -n emapper -j emapper.cmds -c 28 -q spr -t 08:00:00 -e eggnog
 sbatch emapper.slurm
+
+
+
+3574168
+ls -la --time-style=long-iso $SCRATCH/eggnog/tmp_*/emappertmp_dmdn_*/ ; ls -lh $SCRATCH/eggnog/out/
+ls -lh $SCRATCH/eggnog/out/
