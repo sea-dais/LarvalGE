@@ -40,3 +40,5 @@ mkdir -p FastQC
 for file in FastqFiles/*fastq.gz; do
   fastqc "$file" -o FastQC/
 done
+
+scp dmflores@stampede3.tacc.utexas.edu:/scratch/08717/dmflores/LarvalGE/AMIL/FastQC/\*html .

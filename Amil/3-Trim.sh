@@ -1,3 +1,5 @@
+##### NOTE: FASTQC SHOWED FILES WERE ALREADY CLEAN; NO ADAPTER CONTENT OR OVERREPRESENTED SEQ
+##### Skip to Mapping
 #--- Install Tag Seq Scripts
 git clone https://github.com/z0on/tag-based_RNAseq.git
 
